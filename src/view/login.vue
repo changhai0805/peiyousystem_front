@@ -54,13 +54,13 @@
                   sessionStorage.setItem("userName", response.data.data.username);
                   sessionStorage.setItem("realName", response.data.data.realName);
                   sessionStorage.setItem("money", response.data.data.money);
-                }else if(response.data.roleId ===2){
+                }else if(response.data.data.roleId ===2){
                   this.$message.success(response.data.msg);
                   this.$router.push('/index')
                   sessionStorage.setItem("userName", response.data.data.username);
                   sessionStorage.setItem("realName", response.data.data.realName);
                   sessionStorage.setItem("money", response.data.data.money);
-                }else if(response.data.roleId ===3){
+                }else if(response.data.data.roleId ===3){
                   this.$message.success(response.data.msg);
                   this.$router.push('/indexthree')
                   sessionStorage.setItem("userName", response.data.data.username);
