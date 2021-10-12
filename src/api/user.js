@@ -120,11 +120,43 @@ export function teacherList(current,size) {
     }
   })
 }
+export function updateTeacher(data) {
+  return request({
+    url: baseURL + '/teacher/update.do',
+    method: 'post',
+    params:data
+  })
+}
 
-
-
-
-
+export function teacherDelete(id) {
+  return request({
+    url: baseURL + '/teacher/delete.do',
+    method: 'post',
+    params:{
+      id:id
+    }
+  })
+}
+export function teacherSelect(current,size,keyword) {
+  return request({
+    url: baseURL + '/teacher/select.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      keyword:keyword
+    }
+  })
+}
+export function teacherPingJia(username) {
+  return request({
+    url: baseURL + '/evaluation/listByTeacher.do',
+    method: 'get',
+    params:{
+      username:username
+    }
+  })
+}
 
 
 

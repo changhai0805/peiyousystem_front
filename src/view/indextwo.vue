@@ -46,7 +46,7 @@
         <span>{{realName}}</span>
         <el-button type="info"  @click="exitlogin">退出登录</el-button>
       </el-header>
-      <el-main>
+      <el-main style="height: 100%">
         <router-view></router-view>
       </el-main>
     </el-container>
