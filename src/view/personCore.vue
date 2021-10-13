@@ -34,23 +34,12 @@
                                 <p class="period">{{ lesson }}</p>
                             </td>
 
-                            <td class="hovertable" v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" @click="courseClickDetils(course,courseIndex,lessonIndex)">
+                            <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex">
                                 {{classTableData.courses[courseIndex][lessonIndex] || '-'}}
                             </td>
                         </tr>
                     </tbody>
-                    </table>
-                    <el-dialog
-                        title="提示"
-                        :visible.sync="dialogVisible"
-                        width="30%"
-                        :before-close="handleClose">
-                        <span>这是一段信息</span>
-                        <span slot="footer" class="dialog-footer">
-                            <el-button @click="dialogVisible = false">取 消</el-button>
-                            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-                        </span>
-                        </el-dialog>
+                </table>
             </div>
         </el-tab-pane>
         <el-tab-pane label="基本信息" name="second">

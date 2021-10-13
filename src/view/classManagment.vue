@@ -1,8 +1,16 @@
 <template>
   <div style="position:relative;height: 100%">
     <el-row style="text-align:left;background: #fff;padding-top: 10px;height:60px">
-      <el-col :span="18">
-        <el-button type="success" @click="dialogFormVisible = true" style="margin-left: 10px;visibility:hidden">1</el-button>
+      <el-col :span="18" >
+          <span style="color:#606266;padding-left:10px">选择课程：</span>
+          <el-select v-model="value" @change="scoolChange" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
       </el-col>
       <el-col :span="6">
         <el-input style="width: 300px;margin-right: 0px" placeholder="输入用户名查询(不输入内容默认搜索全部)"
@@ -59,7 +67,9 @@
   import Pagination from './pagination.vue'
   import {
     findUserList,
-    listByTeacherInPage
+    listByTeacherInPage,
+    schoolgetSchoolListdo,
+    teachegetClassInfoByTeacherdo
   } from '@/api/user.js'
 
   export default {
@@ -69,6 +79,8 @@
     },
     data () {
       return {
+        options: [],
+        value: '',
         value1: '',
         tableData: [],
         flagJY: '禁用',
@@ -108,24 +120,44 @@
       }
     },
     mounted () {
-      this.listByTeacherInPage()
+      // this.teachegetClassInfoByTeacherdo()
+      this.schoolgetSchoolListdo()
     },
     methods: {
       handleCurrentChange (val) {
         console.log(val)//页码
         this.parms.pageNum = val
-        this.listByTeacherInPage()
+        this.teachegetClassInfoByTeacherdo()
       },
       handleSizeChange (val) {
         console.log(val)
         this.parms.pageSize = val//页数
-        this.listByTeacherInPage()
+        this.teachegetClassInfoByTeacherdo()
       },
-
-      //查询所有任务;
-      listByTeacherInPage () {
+      scoolChange(val){
+        console.log(val)
         let uses = sessionStorage.getItem('userName')
-        listByTeacherInPage(this.parms.pageNum, this.parms.pageSize,uses).then((response) => {
+        teachegetClassInfoByTeacherdo(this.parms.pageNum, this.parms.pageSize,uses,val).then((response) => {
+          this.tableData = response.data.data.records
+          console.log(this.tableData)
+          this.total = response.data.data.total
+        })
+      },
+      // select
+      schoolgetSchoolListdo(){
+        schoolgetSchoolListdo(sessionStorage.getItem('userName')).then((response) => {
+          for(var i=0;i<response.data.data.length;i++){
+            let obj={}
+            obj['value']=response.data.data[i].schoolId
+            obj['label']=response.data.data[i].schoolName
+            this.options.push(obj)
+          }
+        })
+      },
+      //查询所有任务;
+      teachegetClassInfoByTeacherdo () {
+        let uses = sessionStorage.getItem('userName')
+        teachegetClassInfoByTeacherdo(this.parms.pageNum, this.parms.pageSize,uses,this.value).then((response) => {
           this.tableData = response.data.data.records
           console.log(this.tableData)
           this.total = response.data.data.total

@@ -72,29 +72,6 @@
                 this.$message.error(response.data.message);
               }
             })
-            // login(this.loginForm).then((response)=>{
-            //   // response.data.data.permission
-            //   if (response.data.code === 0){
-            //     this.$message.error(response.data.message);
-            //   }else if(response.data.code === 1){
-            //     if (response.data.data.permission === '管理员'){
-            //       this.$message.success(response.data.message);
-            //       this.$router.push('/index')
-            //       sessionStorage.setItem("userName", response.data.data.userName);
-            //     }else if(response.data.data.permission ==='销售员'){
-            //       this.$message.success(response.data.message);
-            //       this.$router.push('/indextwo')
-            //       sessionStorage.setItem("userName", response.data.data.userName);
-            //     }else if(response.data.data.permission ==='采购员'){
-            //       this.$message.success(response.data.message);
-            //       this.$router.push('/indexthree')
-            //       sessionStorage.setItem("userName", response.data.data.userName);
-            //     }
-            //   }else{
-            //     this.$message.error(response.data.message);
-            //   }
-            //
-            // })
           }
         });
       },

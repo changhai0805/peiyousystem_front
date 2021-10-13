@@ -20,6 +20,7 @@ import ExitMoney from '@/view/exitMoney'
 import ChangePass from '@/view/changePass'
 import PersonCore from '@/view/personCore'
 import NewsCore from '@/view/newsCore'
+import ClassManagment from '@/view/classManagment'
 import SchoolByAdmin from '@/view/schoolByAdmin'
 import imServer from '@/components/imServer/imServer'
 import imClient from '@/components/imClient/imClient'
@@ -58,9 +59,14 @@ const router = new Router({
           component: Result
         },
         {
-          path: '/autoMonitor',
-          name: 'autoMonitor',
-          component: AutoMonitor
+          path: '/result',
+          name: 'result',
+          component: Result
+        },
+        {
+          path: '/classManagment',
+          name: 'classManagment',
+          component: ClassManagment
         },
         {
           path: '/personnews',

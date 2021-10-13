@@ -211,6 +211,67 @@ export function getUsuallyQuestionList() {
     method: 'get'
   })
 }
+//获取评价列表
+export function listByTeacherInPage(current,size,username) {
+  return request({
+    url: baseURL + '/evaluation/listByTeacherInPage.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      username:username
+    }
+  })
+}
+//查看学员管理下课程列表
+export function teachergetTeacherLessonListdo(username) {
+  return request({
+    url: baseURL + '/teacher/getTeacherLessonList.do',
+    method: 'get',
+    params:{
+      username:username
+    }
+  })
+}
+//班级管理下拉列表
+export function schoolgetSchoolListdo() {
+  return request({
+    url: baseURL + '/school/getSchoolList.do  ',
+    method: 'get',
+  })
+}
+//班级管理列表
+export function teachegetClassInfoByTeacherdo(current,size,username,schoolId) {
+  return request({
+    url: baseURL + '/teacher/getClassInfoByTeacher.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      username:username,
+      schoolId:schoolId
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
