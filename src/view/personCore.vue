@@ -3,7 +3,7 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="课程表" name="first">
             <div>
-               <el-select style="float:left" v-model="value" placeholder="请选择学生">
+               <label style="float:left;text-align: center;line-height: 50px;margin-left: 10px">请选择学生: </label> <el-select style="float:left;margin-left: 10px" v-model="value" placeholder="请选择学生">
                     <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -11,6 +11,15 @@
                     :value="item.value">
                     </el-option>
                 </el-select>
+              <label style="float:left;text-align: center;line-height: 50px;margin-left: 15px">请选择日期: </label>
+                <el-date-picker
+                  style="float: left;margin-left: 5px"
+                  :v-model="checkTime"
+                  format="yyyy-MM-dd"
+                  value-format="yyyy-MM-dd"
+                  start-placeholder="请选择日期"
+                >
+                </el-date-picker>
                 <table>
                     <thead>
                         <tr>
