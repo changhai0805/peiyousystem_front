@@ -233,8 +233,26 @@ export function teachergetTeacherLessonListdo(username) {
     }
   })
 }
-
-
+//班级管理下拉列表
+export function schoolgetSchoolListdo() {
+  return request({
+    url: baseURL + '/school/getSchoolList.do  ',
+    method: 'get',
+  })
+}
+//班级管理列表
+export function teachegetClassInfoByTeacherdo(current,size,username,schoolId) {
+  return request({
+    url: baseURL + '/teacher/getClassInfoByTeacher.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      username:username,
+      schoolId:schoolId
+    }
+  })
+}
 
 
 
