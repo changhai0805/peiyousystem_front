@@ -21,6 +21,8 @@ import ChangePass from '@/view/changePass'
 import PersonCore from '@/view/personCore'
 import NewsCore from '@/view/newsCore'
 import SchoolByAdmin from '@/view/schoolByAdmin'
+import imServer from '@/components/imServer/imServer'
+import imClient from '@/components/imClient/imClient'
 Vue.use(Router)
 
 const router = new Router({
@@ -108,6 +110,11 @@ const router = new Router({
           name: 'changePass',
           component: ChangePass
         },
+        {
+          path: '/imServer',
+          name: 'imServer',
+          component: imServer
+        },
       ]
     },
     {
@@ -140,6 +147,11 @@ const router = new Router({
           path: '/newsCore',
           name: 'newsCore',
           component: NewsCore
+        },
+        {
+          path: '/imClient',
+          name: 'imClient',
+          component: imClient
         }
       ]
     },

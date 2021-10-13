@@ -9,7 +9,7 @@
         @close="handleClose"
         background-color="#000"
         text-color="#fff"
-        active-text-color="#ffd04b"
+        active-text-color="#fff"
         style="height: 100%">
         <el-menu-item index="/schoolByAdmin">
           <i class="el-icon-alarm-clock"></i>
@@ -27,7 +27,7 @@
           <i class="el-icon-document"></i>
           <span slot="title">课程管理</span>
         </el-menu-item>
-        <el-menu-item index="/customerServe">
+        <el-menu-item index="/imServer">
           <i class="el-icon-s-custom"></i>
           <span slot="title">客服中心</span>
         </el-menu-item>

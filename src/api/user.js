@@ -157,9 +157,60 @@ export function teacherPingJia(username) {
     }
   })
 }
-
-
-
+//学生家长订单已付款
+export function orderuserPayTab(current,size,username) {
+  return request({
+    url: baseURL + '/order/userPayTab.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      username:username
+    }
+  })
+}
+//未付款
+export function orderuserUnPayTab(current,size,username) {
+  return request({
+    url: baseURL + '/order/userUnPayTab.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      username:username
+    }
+  })
+}
+//个人中心用户信息
+export function userlistUserInfodo(username) {
+  return request({
+    url: baseURL + '/user/listUserInfo.do',
+    method: 'get',
+    params:{
+      username:username
+    }
+  })
+}
+//添加留言信息
+export function insertMessage(username,content,email,phone) {
+  return request({
+    url: baseURL + '/opinion/save.do',
+    method: 'post',
+    params:{
+      username:username,
+      content:content,
+      email:email,
+      phone:phone
+    }
+  })
+}
+//获取常用问题接口
+export function getUsuallyQuestionList() {
+  return request({
+    url: baseURL + '/school/getUsuallyQuestionList.do',
+    method: 'get'
+  })
+}
 
 
 

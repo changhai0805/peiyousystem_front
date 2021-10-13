@@ -1,9 +1,9 @@
 <template>
   <div class="bg_color" >
     <!--表单-->
-    <el-form style="width:23%;margin-right: 140px;position: relative;left: 60px" :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="demo-ruleForm">
+    <el-form style="width:23%;margin-left: 36%;margin-top: 3%" :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px" class="demo-ruleForm">
       <el-form-item  >
-        <h3 style="color: #ffffff;text-align: center;font-weight: bold;margin-bottom: 30px;font-size: 30px">红星培优管理系统</h3>
+        <h3 style="color: GrayText;text-align: center;font-weight: bold;margin-bottom: 30px;font-size: 30px">红星培优后台管理系统</h3>
       </el-form-item>
       <el-form-item  label="用户名" prop="username" >
         <el-input type="text" v-model="loginForm.username" autocomplete="off"  placeholder="请输入用户名" ></el-input>
@@ -54,13 +54,13 @@
                   sessionStorage.setItem("userName", response.data.data.username);
                   sessionStorage.setItem("realName", response.data.data.realName);
                   sessionStorage.setItem("money", response.data.data.money);
-                }else if(response.data.roleId ===2){
+                }else if(response.data.data.roleId ===2){
                   this.$message.success(response.data.msg);
                   this.$router.push('/index')
                   sessionStorage.setItem("userName", response.data.data.username);
                   sessionStorage.setItem("realName", response.data.data.realName);
                   sessionStorage.setItem("money", response.data.data.money);
-                }else if(response.data.roleId ===3){
+                }else if(response.data.data.roleId ===3){
                   this.$message.success(response.data.msg);
                   this.$router.push('/indexthree')
                   sessionStorage.setItem("userName", response.data.data.username);

@@ -4,6 +4,7 @@
     </el-aside> -->
     <el-container>
       <el-header style="text-align: right">
+        <span style="float: left;font-size: 22px;font-family:'华文中宋';color:rosybrown;font-weight: bold">红星培优管理系统</span>
       <el-menu
         :default-active="this.$route.path"
         router
@@ -14,7 +15,7 @@
         background-color="#B3C0D1"
         text-color="#fff"
         active-text-color="#ffd04b"
-        style="height: 100%">
+        style="height: 100%;float: right;margin-right: 12%">
         <el-menu-item index="/purchasingGoodsManagement">
           <i class="el-icon-baseball"></i>
           <span slot="title">课程查询</span>
@@ -23,7 +24,7 @@
           <i class="el-icon-circle-plus"></i>
           <span slot="title">我的订单</span>
         </el-menu-item>
-        <el-menu-item index="/purchasePersonal">
+        <el-menu-item index="/imClient">
           <i class="el-icon-document"></i>
           <span slot="title">客服反馈</span>
         </el-menu-item>
@@ -37,8 +38,8 @@
         </el-menu-item>
       </el-menu>
       <div style="position:absolute;right:0px;top:0px">
-        <span>{{userName}}</span>
-        <el-button type="info"    @click="exitlogin">退出登录</el-button>
+        <span style="font-weight: bold;margin-right: 10px">当前用户:  {{realName}}</span>
+        <el-button type="info" @click="exitlogin">退出登录</el-button>
       </div>
 
       </el-header>
@@ -55,7 +56,8 @@
     name: "index",
     data(){
       return{
-        userName:sessionStorage.getItem('userName')
+        userName:sessionStorage.getItem('userName'),
+        realName:sessionStorage.getItem("realName")
       }
     },
     methods: {
