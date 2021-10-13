@@ -112,7 +112,7 @@
     </el-row>
     <el-table
       :data="tableData"
-      style="width: 100%;height: 90%">
+      style="width: 100%;">
       <el-table-column
         label="ID"
         type="index">
@@ -221,7 +221,7 @@
     <div style="height: 30px;text-align: center">
       <pagination :currentPage="pageNum" :total=total :limit="pageSize" :small="false"
                   @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
-                  style="text-align: center"/>
+                  style="text-align: center;height: 5%"/>
     </div>
 
   </div>

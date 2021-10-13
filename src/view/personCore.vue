@@ -3,7 +3,7 @@
     <el-tabs v-model="activeName" @tab-click="handleClick">
         <el-tab-pane label="课程表" name="first">
             <div>
-               <el-select style="float:left" v-model="value" placeholder="请选择学生">
+               <label style="float:left;text-align: center;line-height: 50px;margin-left: 10px">请选择学生: </label> <el-select style="float:left;margin-left: 10px" v-model="value" placeholder="请选择学生">
                     <el-option
                     v-for="item in options"
                     :key="item.value"
@@ -11,6 +11,15 @@
                     :value="item.value">
                     </el-option>
                 </el-select>
+              <label style="float:left;text-align: center;line-height: 50px;margin-left: 15px">请选择日期: </label>
+                <el-date-picker
+                  style="float: left;margin-left: 5px"
+                  :v-model="checkTime"
+                  format="yyyy-MM-dd"
+                  value-format="yyyy-MM-dd"
+                  start-placeholder="请选择日期"
+                >
+                </el-date-picker>
                 <table>
                     <thead>
                         <tr>
@@ -25,12 +34,23 @@
                                 <p class="period">{{ lesson }}</p>
                             </td>
 
-                            <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex">
+                            <td class="hovertable" v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" @click="courseClickDetils(course,courseIndex,lessonIndex)">
                                 {{classTableData.courses[courseIndex][lessonIndex] || '-'}}
                             </td>
                         </tr>
                     </tbody>
-                </table>
+                    </table>
+                    <el-dialog
+                        title="提示"
+                        :visible.sync="dialogVisible"
+                        width="30%"
+                        :before-close="handleClose">
+                        <span>这是一段信息</span>
+                        <span slot="footer" class="dialog-footer">
+                            <el-button @click="dialogVisible = false">取 消</el-button>
+                            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                        </span>
+                        </el-dialog>
             </div>
         </el-tab-pane>
         <el-tab-pane label="基本信息" name="second">
@@ -56,8 +76,8 @@
             </div>
             <div style="width: 100%">
                 <!-- <label style="width: 15%;text-align: right;display: inline-block">用户名：</label><el-input disabled v-model="userName" style="width: 30%;text-align: left"></el-input><br> -->
-                <label style="width: 15%;text-align: right;display: inline-block">密码：</label><el-input placeholder="请输入要修改的密码" v-model="pwd" style="width: 30%;text-align: left;padding-top: 20px"></el-input>
-                <br><el-button style="margin-top: 20px;margin-left: 40%" @click="changeName">确认</el-button>
+                <label style="text-align: right;display: inline-block">密码：</label><el-input type="password" placeholder="请输入要修改的密码" v-model="pwd" style="width: 25%;text-align: left;padding-top: 20px"></el-input>
+                <br><el-button style="margin-top: 20px;margin-left: 25%" @click="changeName">确认</el-button>
             </div>
             </el-card>
         </el-tab-pane>
@@ -69,13 +89,15 @@
   export default {
     name: "result",
     components: {
-    
+
     },
     data() {
       return {
           pwd:'',
         customerDetails:{},
         activeName: 'first',
+        dialogVisible:false,
+        courseName:'',
         classTableData: {
                 lessons: [
                     '08:00-09:00',
@@ -89,7 +111,7 @@
                 ],
                 courses: [
                     ['', '', '', '', '', '', '', ''],
-                    ['生物', '物理', '化学', '政治', '历史', '英语', '', '语文'],
+                    ['生物(l001)', '物理', '化学', '政治', '历史', '英语', '', '语文'],
                     ['语文', '数学', '英语', '历史', '', '化学', '物理', '生物'],
                     ['生物', '', '化学', '政治', '历史', '英语', '数学', '语文'],
                     ['语文', '数学', '英语', '历史', '政治', '', '物理', '生物'],
@@ -104,6 +126,25 @@
      this.getCusInfo()
     },
     methods: {
+        courseClickDetils(val,index,lessonIndex){
+            console.log(val,index,lessonIndex)
+            debugger
+            for(let i=0;i<=6;i++){
+                if(index == i){
+                    //确定列
+                    console.log(this.classTableData.courses[i])
+                    //确定行 锁定单元格
+                    for(var j=0;j<this.classTableData.courses[i].length;j++){
+                        if(lessonIndex == j){
+                            console.log(this.classTableData.courses[i][j])
+                            this.courseName = this.classTableData.courses[i][j]
+                            //弹框显示课程基本信息以及考勤，通过课程名区分
+                            this.dialogVisible = true
+                        }
+                    }
+                }
+            }
+        },
         changeName(){
 
         },
@@ -131,7 +172,7 @@
      margin: 7px;
 }
 .tabel-container>table {
-    
+
 }
  table {
     table-layout: fixed;
@@ -149,9 +190,16 @@ tbody{
     background-color: #eaf2ff;
 }
 td {
-                width: 60px;
-                padding: 12px 2px;
-                font-size: 16px;
-                text-align: center;
-            }
+    width: 30px;
+    /*padding: 12px 2px;*/
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+}
+td:hover{
+     background: rgb(103, 161, 255);
+     /*border:medium double #fff*/
+}
 </style>

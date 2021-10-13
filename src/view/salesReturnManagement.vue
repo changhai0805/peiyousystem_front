@@ -40,30 +40,35 @@
         <el-dialog title="修改教师" :visible.sync="dialogFormVisibletwo" :before-close="closeDialog" >
           <el-form :model="form" ref="form">
             <el-form-item label="用户名" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.goodsName" autocomplete="off" placeholder="请输入商品名"></el-input>
+              <el-input v-model="form.username" disabled autocomplete="off" placeholder="请输入用户名"></el-input>
             </el-form-item>
             <el-form-item label="教师名称" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.goodsType" autocomplete="off" placeholder="请输入商品类型"></el-input>
+              <el-input v-model="form.realName" autocomplete="off" placeholder="请输入教师名称"></el-input>
             </el-form-item>
             <el-form-item label="性别" style="width:600px" :label-width="formLabelWidth">
-              <el-input disabled v-model="form.returnTime" autocomplete="off" placeholder="输入发货地点"></el-input>
-            </el-form-item>
-            <el-form-item label="学科" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.returnReason" autocomplete="off" placeholder="请输入销售金额"></el-input>
-            </el-form-item>
-            <el-form-item label="最高学历" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.returnPrice" autocomplete="off" placeholder="请输入销售金额"></el-input>
-            </el-form-item>
-            <el-form-item label="毕业院校" style="width:600px" :label-width="formLabelWidth">
-              <el-select v-model="form.status" placeholder="请选择销售状态">
-                <el-option label="待退货" value="待退货"></el-option>
-                <el-option label="已退货" value="已退货"></el-option>
-                <el-option label="待发货" value="待发货"></el-option>
-                <el-option label="已发货" value="已发货"></el-option>
+              <el-select v-model="form.sex" placeholder="请选择性别">
+                <el-option label="男" value="男"></el-option>
+                <el-option label="女" value="女"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="负责人" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.principal" autocomplete="off" placeholder="请输入负责人"></el-input>
+            <el-form-item label="学科" style="width:600px" :label-width="formLabelWidth">
+              <el-input v-model="form.subject" autocomplete="off" placeholder="请输入学科"></el-input>
+            </el-form-item>
+            <el-form-item label="最高学历" style="width:600px" :label-width="formLabelWidth">
+              <el-select v-model="form.education" placeholder="请选择最高学历">
+                <el-option label="专科" value="专科"></el-option>
+                <el-option label="本科" value="本科"></el-option>
+                <el-option label="硕士" value="硕士"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="毕业院校" style="width:600px" :label-width="formLabelWidth">
+              <el-input v-model="form.university" autocomplete="off" placeholder="请输入毕业院校"></el-input>
+            </el-form-item>
+            <el-form-item label="教龄" style="width:600px" :label-width="formLabelWidth">
+              <el-input v-model="form.teachYear" type="number" autocomplete="off" placeholder="请输入教龄"></el-input>
+            </el-form-item>
+            <el-form-item label="教资证书编号" style="width:600px" :label-width="formLabelWidth">
+              <el-input v-model="form.licenseId" autocomplete="off" placeholder="请输入教资证书编号"></el-input>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
@@ -72,42 +77,47 @@
           </div>
         </el-dialog>
         <el-dialog title="评价信息" :visible.sync="dialogFormVisiblethree" :before-close="closeDialog" >
-          <el-form :model="form" ref="form">
-            <el-form-item label="商品名" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.goodsName" autocomplete="off" placeholder="请输入商品名"></el-input>
-            </el-form-item>
-            <el-form-item label="商品类型" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.goodsType" autocomplete="off" placeholder="请输入商品类型"></el-input>
-            </el-form-item>
-            <el-form-item label="发起时间" style="width:600px" :label-width="formLabelWidth">
-              <el-input disabled v-model="form.returnTime" autocomplete="off" placeholder="输入发货地点"></el-input>
-            </el-form-item>
-            <el-form-item label="退货原因" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.returnReason" autocomplete="off" placeholder="请输入销售金额"></el-input>
-            </el-form-item>
-            <el-form-item label="退货金额" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.returnPrice" autocomplete="off" placeholder="请输入销售金额"></el-input>
-            </el-form-item>
-            <el-form-item label="销售状态" style="width:600px" :label-width="formLabelWidth">
-              <el-select v-model="form.status" placeholder="请选择销售状态">
-                <el-option label="待退货" value="待退货"></el-option>
-                <el-option label="已退货" value="已退货"></el-option>
-                <el-option label="待发货" value="待发货"></el-option>
-                <el-option label="已发货" value="已发货"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="负责人" style="width:600px" :label-width="formLabelWidth">
-              <el-input v-model="form.principal" autocomplete="off" placeholder="请输入负责人"></el-input>
-            </el-form-item>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="exitthree">取 消</el-button>
-            <el-button type="primary" @click="btnthree">确 定</el-button>
-          </div>
+          <el-table
+            height="350"
+            border
+            :data="tableData1"
+            style="width: 100%;height: 90%">
+            <el-table-column
+              label="ID"
+              type="index">
+            </el-table-column>
+            <el-table-column
+              label="用户名"
+              prop="stuName">
+            </el-table-column>
+            <el-table-column
+              label="课程名称"
+              prop="lessonName">
+            </el-table-column>
+            <el-table-column
+              label="评价内容"
+              prop="evaluationInfo">
+            </el-table-column>
+            <el-table-column
+              label="评价时间"
+              prop="createTime">
+            </el-table-column>
+            <el-table-column
+              label="评分"
+              prop="level">
+              <template slot-scope="scope">
+                <el-rate
+                  v-model="scope.row.level"
+                  :colors="colors">
+                </el-rate>
+              </template>
+            </el-table-column>
+          </el-table>
+
         </el-dialog>
       </el-col>
       <el-col :span="6">
-        <el-input style="width: 300px;margin-right: 0px" placeholder="输入商品名查询(不输入内容默认搜索全部)" v-model="goodsName"></el-input>
+        <el-input style="width: 300px;margin-right: 0px" placeholder="输入教师名查询(不输入内容默认搜索全部)" v-model="goodsName"></el-input>
         <el-button @click="findListClick">搜索</el-button>
       </el-col>
     </el-row>
@@ -174,7 +184,6 @@
             type="primary"
             @click="handleEidt(scope.$index, scope.row)">编辑</el-button>
           <el-button
-            v-if="scope.row.status === '已退货' || scope.row.status === '已发货' "
             size="mini"
             type="danger"
             @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -191,7 +200,7 @@
 
 <script>
   import Pagination from './pagination.vue'
-  import {teacherList} from '@/api/user.js';
+  import {teacherList,updateTeacher,teacherDelete,teacherSelect,teacherPingJia} from '@/api/user.js';
   export default {
     name: "result",
     components: {
@@ -199,8 +208,11 @@
     },
     data() {
       return {
-        value1: '',
+        value1: null,
+        value2: null,
+        colors: ['#99A9BF', '#F7BA2A', '#FF9900'],  // 等同于 { 2: '#99A9BF', 4: { value: '#F7BA2A', excluded: true }, 5: '#FF9900' }
         tableData: [],
+        tableData1: [],
         search: '',
         pageNum: 1,
         pageSize: 10,
@@ -220,14 +232,15 @@
         dialogFormVisibletwo:false,
         dialogFormVisiblethree:false,
         form: {
-          goodsName:'',
-          goodsType:'',
-          returnTime:null,
-          returnReason:'',
-          returnPrice:null,
-          status:'',
+          username:'',
+          realName:'',
+          sex:'',
+          subject:'',
+          education:'',
+          university:'',
           id:'',
-          principal:''
+          teachYear:'',
+          licenseId:''
         },
         formLabelWidth: '120px'
       }
@@ -261,38 +274,31 @@
       handleEidt(index, row) {
         console.log(index, row);
         this.form.id=row.id
-        this.form.goodsName=row.goodsName
-        this.form.goodsType=row.goodsType
-        this.form.returnTime=row.returnTime
-        this.form.returnReason=row.returnReason
-        this.form.returnPrice=row.returnPrice
-        this.form.status=row.status
-        this.form.principal=row.principal
+        this.form.realName=row.realName
+        this.form.username=row.username
+        this.form.sex=row.sex
+        this.form.subject=row.subject
+        this.form.education=row.education
+        this.form.university=row.university
+        this.form.teachYear=row.teachYear
+        this.form.licenseId=row.licenseId
         this.dialogFormVisibletwo = true;
-        this.salereturnList();
 
       },
       handlePingjia(index, row) {
-        console.log(index, row);
-        this.form.id=row.id
-        this.form.goodsName=row.goodsName
-        this.form.goodsType=row.goodsType
-        this.form.returnTime=row.returnTime
-        this.form.returnReason=row.returnReason
-        this.form.returnPrice=row.returnPrice
-        this.form.status=row.status
-        this.form.principal=row.principal
-        this.dialogFormVisiblethree = true;
-        this.salereturnList();
-
+        this.dialogFormVisiblethree = true
+        teacherPingJia(row.username).then((response)=>{
+          this.tableData1 = response.data.data
+        })
       },
       handleDelete(index, row) {
         console.log(index, row);
         var r=confirm("是否确定删除？");
         if (r===true){
-          salereturndelete(row.id).then((response)=>{
+          teacherDelete(row.id).then((response)=>{
+            this.$message.success(response.data.msg);
+            this.teacherList();
           })
-          this.salereturnList();
         }else{
 
         }
@@ -329,21 +335,21 @@
       },
       //查询用户
       findListClick(){
-        salereturnfind(this.goodsName,this.pageNum,this.pageSize).then((response)=>{
-          this.tableData = response.data.list
+        teacherSelect(this.parms.pageNum,this.parms.pageSize,this.goodsName).then((response)=>{
+          this.tableData = response.data.data.records
+          this.total = response.data.data.total
         })
       },
       btntwo(){
-        debugger
         this.dialogFormVisibletwo = false
-        salereturnupdate(this.form).then((response)=>{
+        updateTeacher(this.form).then((response)=>{
+
         })
-        this.salereturnList()
+        this.teacherList()
         this.$message.success("修改成功");
         this.resetFormData()
       },
       btnthree(){
-        debugger
         this.dialogFormVisiblethree = false
         salereturnupdate(this.form).then((response)=>{
         })
@@ -360,13 +366,15 @@
         this.resetFormData()
       },
       resetFormData(){
-        this.form.goodsName ='';
-        this.form.goodsType ='';
-        this.form.returnTime ='';
-        this.form.returnReason ='';
-        this.form.returnPrice ='';
-        this.form.status ='';
-        this.form.principal ='';
+        this.form.id='';
+        this.form.realName='';
+        this.form.username='';
+        this.form.sex='';
+        this.form.subject='';
+        this.form.education='';
+        this.form.university='';
+        this.form.teachYear='';
+        this.form.licenseId='';
       },
       exit(form){
         this.dialogFormVisible = false

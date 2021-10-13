@@ -120,6 +120,43 @@ export function teacherList(current,size) {
     }
   })
 }
+export function updateTeacher(data) {
+  return request({
+    url: baseURL + '/teacher/update.do',
+    method: 'post',
+    params:data
+  })
+}
+
+export function teacherDelete(id) {
+  return request({
+    url: baseURL + '/teacher/delete.do',
+    method: 'post',
+    params:{
+      id:id
+    }
+  })
+}
+export function teacherSelect(current,size,keyword) {
+  return request({
+    url: baseURL + '/teacher/select.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      keyword:keyword
+    }
+  })
+}
+export function teacherPingJia(username) {
+  return request({
+    url: baseURL + '/evaluation/listByTeacher.do',
+    method: 'get',
+    params:{
+      username:username
+    }
+  })
+}
 //学生家长订单已付款
 export function orderuserPayTab(current,size,username) {
   return request({
@@ -154,27 +191,26 @@ export function userlistUserInfodo(username) {
     }
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//添加留言信息
+export function insertMessage(username,content,email,phone) {
+  return request({
+    url: baseURL + '/opinion/save.do',
+    method: 'post',
+    params:{
+      username:username,
+      content:content,
+      email:email,
+      phone:phone
+    }
+  })
+}
+//获取常用问题接口
+export function getUsuallyQuestionList() {
+  return request({
+    url: baseURL + '/school/getUsuallyQuestionList.do',
+    method: 'get'
+  })
+}
 
 
 
