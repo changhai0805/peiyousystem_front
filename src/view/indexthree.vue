@@ -32,7 +32,7 @@
           <i class="el-icon-document"></i>
           <span slot="title">个人中心</span>
         </el-menu-item>
-        <el-menu-item index="/newsCore">
+        <el-menu-item index="/Tabsthree">
           <i class="el-icon-document"></i>
           <span slot="title">消息中心</span>
         </el-menu-item>
@@ -41,9 +41,7 @@
         <span style="font-weight: bold;margin-right: 10px">当前用户:  {{realName}}</span>
         <el-button type="info" @click="exitlogin">退出登录</el-button>
       </div>
-
       </el-header>
-
       <el-main style="height:100vh">
         <router-view></router-view>
       </el-main>
@@ -52,6 +50,7 @@
 </template>
 
 <script>
+
   export default {
     name: "index",
     data(){

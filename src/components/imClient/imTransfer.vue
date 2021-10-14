@@ -1,6 +1,7 @@
 <!-- 转接 -->
 <template>
     <div class="imTransfer-wrapper">
+      <div v-if="kfList.length==0">当前没有客服在线，请留言</div>
         <main class="main">
             <el-radio-group v-model="selectedServerChatId" class="item-group">
                 <div class="item" v-for="(item, index) in kfList" :key="index">

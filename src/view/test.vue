@@ -41,17 +41,30 @@
           <el-button type="primary" @click="btn">确 定</el-button>
         </div>
       </el-dialog>
+<!--      <div style="height: 300px;width: 400px; background-color: #f7455d" >-->
+<!--        <pdf-->
+<!--          ref="pdf"-->
+<!--          :src="url"-->
+<!--        >-->
+<!--        </pdf>-->
+
+<!--      </div>-->
     </div>
   </el-card>
 </div>
 </template>
 
 <script>
+  // import pdf from 'vue-pdf'
   import {updatePasswordByName,ctygfindUserInfo} from '@/api/user.js';
     export default {
+      // components:{
+      //   pdf
+      // },
         name: "test",
         data(){
           return{
+            // url:"http://10.168.1.101:9000/laos/文档调整内容_1632734260733(2)_1633676653671.pdf",
             // realName:'',
             // telephone:'',
             // idNumber:'',

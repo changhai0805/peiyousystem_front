@@ -14,7 +14,7 @@
               <label style="float:left;text-align: center;line-height: 50px;margin-left: 15px">请选择日期: </label>
                 <el-date-picker
                   style="float: left;margin-left: 5px"
-                  :v-model="checkTime"
+                  v-model="checkTime"
                   format="yyyy-MM-dd"
                   value-format="yyyy-MM-dd"
                   start-placeholder="请选择日期"
@@ -34,7 +34,7 @@
                                 <p class="period">{{ lesson }}</p>
                             </td>
 
-                            <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex">
+                            <td @click="courseClickDetils(classTableData.courses[courseIndex][lessonIndex],courseIndex,lessonIndex)" v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex">
                                 {{classTableData.courses[courseIndex][lessonIndex] || '-'}}
                             </td>
                         </tr>
@@ -82,6 +82,7 @@
     },
     data() {
       return {
+        checkTime:this.dayFormat(),
           pwd:'',
         customerDetails:{},
         activeName: 'first',
@@ -115,9 +116,39 @@
      this.getCusInfo()
     },
     methods: {
+      //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+      dateFormat:function() {
+        var date=new Date();
+        var year=date.getFullYear();
+        /* 在日期格式中，月份是从0开始的，因此要加0
+         * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+         * */
+        var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+        var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+        var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+        var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+        var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+        // 拼接
+        return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+      },
+      //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+      dayFormat:function() {
+        var date=new Date();
+        var year=date.getFullYear();
+        /* 在日期格式中，月份是从0开始的，因此要加0
+         * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+         * */
+        var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+        var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+        // 拼接
+        return year+"-"+month+"-"+day;
+      },
         courseClickDetils(val,index,lessonIndex){
-            console.log(val,index,lessonIndex)
-            debugger
+          if(val!=''&&val!='-'){
+            alert("本节有课")
+          }else {
+            alert("本节没课")
+          }
             for(let i=0;i<=6;i++){
                 if(index == i){
                     //确定列

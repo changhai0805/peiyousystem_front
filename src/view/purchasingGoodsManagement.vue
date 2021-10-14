@@ -6,7 +6,7 @@
         <el-input style="width: 300px;margin-right: 0px" placeholder="输入课程名称查询(不输入内容默认搜索全部)" v-model="goodsName"></el-input>
         <el-button @click="findListClick">搜索</el-button>
       </el-col>
-      <el-row style="margin:0 atuo" >
+      <el-row style="margin:0 auto" >
         <el-col :span='6' style="padding:10px">
           <div style="width:100%;height:200px;background:#eee">
             <p style="height:120px;">关于学生成长的必要课程，欢迎各位家长来报名</p>

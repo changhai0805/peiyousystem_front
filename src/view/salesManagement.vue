@@ -47,6 +47,12 @@
                 <el-option label="6年级" value="6"></el-option>
               </el-select>
             </el-form-item>
+            <el-form-item v-if="form.roleId == '1' " label="管理校区" style="width:600px" :label-width="formLabelWidth">
+              <el-select style="width:600px"  v-model="schoolId" placeholder="请选择管理的校区">
+                <el-option v-for="(item,index) in addSchoolIdList" :key="index" :label="item.schoolName" :value="item.schoolId"></el-option>
+              </el-select>
+
+            </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="exit">取 消</el-button>
@@ -89,6 +95,16 @@
             </el-form-item>
             <el-form-item v-if="form.roleId == '学生家长' " label="年级" style="width:600px" :label-width="formLabelWidth">
               <el-select style="width:600px" v-model="form.grade" placeholder="请选择年级">
+                <el-option label="1年级" value="1"></el-option>
+                <el-option label="2年级" value="2"></el-option>
+                <el-option label="3年级" value="3"></el-option>
+                <el-option label="4年级" value="4"></el-option>
+                <el-option label="5年级" value="5"></el-option>
+                <el-option label="6年级" value="6"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item v-if="form.roleId == '校区管理员' " label="所属校区" style="width:600px" :label-width="formLabelWidth">
+              <el-select style="width:600px" v-model="addSchoolId" placeholder="请选择所属校区">
                 <el-option label="1年级" value="1"></el-option>
                 <el-option label="2年级" value="2"></el-option>
                 <el-option label="3年级" value="3"></el-option>
@@ -236,7 +252,9 @@
     usermakeMoneydo,
     deletedo,
     savedo,
-    updatedo
+    updatedo,
+    insertAdminSchool,
+    schoolgetSchoolListdo
   } from '@/api/user.js'
 
   export default {
@@ -265,6 +283,8 @@
           userId: '',
           status: null
         },
+        schoolId:'',
+        addSchoolIdList:[],
         value: null,
         goodsName: '',
         dialogFormVisible: false,
@@ -286,8 +306,15 @@
     },
     mounted () {
       this.listAlldo()
+      this.getSchoolList()
     },
     methods: {
+      getSchoolList(){
+        schoolgetSchoolListdo().then((response)=>{
+          this.addSchoolIdList=response.data.data
+        })
+
+      },
       quitCz () {
         this.moneyCz = ''
         this.dialogVisibleCz = false
@@ -341,7 +368,7 @@
         this.form.sex = row.sex
         this.form.money = row.money
         if (row.roleId == 1) {
-          this.form.roleId = '社区管理员'
+          this.form.roleId = '校区管理员'
         } else if (row.roleId == 2) {
           this.form.roleId = '教师'
         } else {
@@ -435,6 +462,11 @@
       },
       btn () {
         savedo(this.form).then((response) => {
+          if(this.form.roleId=='1'){
+            insertAdminSchool(this.form.username,this.schoolId).then((response)=>{
+
+            })
+          }
           if (response.data.code == 200) {
             this.dialogFormVisible = false
             this.$message.success(response.data.msg)
