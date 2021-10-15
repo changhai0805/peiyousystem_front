@@ -107,6 +107,7 @@
               prop="level">
               <template slot-scope="scope">
                 <el-rate
+                  disabled
                   v-model="scope.row.level"
                   :colors="colors">
                 </el-rate>

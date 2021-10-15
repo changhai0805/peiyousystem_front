@@ -4,7 +4,7 @@
     </el-aside> -->
     <el-container>
       <el-header style="text-align: right">
-        <span style="float: left;font-size: 22px;font-family:'华文中宋';color:rosybrown;font-weight: bold">红星培优管理系统</span>
+        <span style="float: left;font-size: 22px;font-family:'华文中宋';color:white;font-weight: bold">红星培优管理系统</span>
       <el-menu
         :default-active="this.$route.path"
         router
@@ -12,7 +12,7 @@
         @open="handleOpen"
         mode="horizontal"
         @close="handleClose"
-        background-color="#B3C0D1"
+        background-color="darkseagreen"
         text-color="#fff"
         active-text-color="#ffd04b"
         style="height: 100%;float: right;margin-right: 12%">
@@ -32,7 +32,7 @@
           <i class="el-icon-document"></i>
           <span slot="title">个人中心</span>
         </el-menu-item>
-        <el-menu-item index="/newsCore">
+        <el-menu-item index="/Tabsthree">
           <i class="el-icon-document"></i>
           <span slot="title">消息中心</span>
         </el-menu-item>
@@ -41,9 +41,7 @@
         <span style="font-weight: bold;margin-right: 10px">当前用户:  {{realName}}</span>
         <el-button type="info" @click="exitlogin">退出登录</el-button>
       </div>
-
       </el-header>
-
       <el-main style="height:100vh">
         <router-view></router-view>
       </el-main>
@@ -52,6 +50,7 @@
 </template>
 
 <script>
+
   export default {
     name: "index",
     data(){
@@ -72,6 +71,8 @@
         if (r===true){
           this.$router.push('/login')
           sessionStorage.removeItem('userName')
+          sessionStorage.removeItem('money')
+          sessionStorage.removeItem('realName')
         }
 
       }
@@ -81,7 +82,7 @@
 
 <style scoped>
   .el-header, .el-footer {
-    background-color: #B3C0D1;
+    background-color: darkseagreen;
     color: #333;
     text-align: center;
     line-height: 60px;

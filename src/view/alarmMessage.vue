@@ -2,112 +2,14 @@
   <div style="position:relative;height: 100%">
     <el-row style="text-align:left;background: #fff;padding-top: 10px">
       <el-col :span="18">
-        <el-button type="success" @click="dialogFormVisible = true" style="margin-left: 10px;">添加用户</el-button>
-        <el-dialog title="添加用户" :visible.sync="dialogFormVisible" :before-close="closeDialog">
-          <el-form :model="form" ref="form">
-            <el-form-item label="用户名" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.username" autocomplete="off" placeholder="请输入用户名"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.password" autocomplete="off" show-password
-                        placeholder="请输入密码"></el-input>
-            </el-form-item>
-            <el-form-item label="真实姓名" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.realName" autocomplete="off" placeholder="请输入真实姓名"></el-input>
-            </el-form-item>
-            <el-form-item label="电话" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.telephone" autocomplete="off" placeholder="请输入电话"></el-input>
-            </el-form-item>
-            <el-form-item label="邮箱" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.email" autocomplete="off" placeholder="输入邮箱"></el-input>
-            </el-form-item>
-            <el-form-item label="初始金额" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.money" autocomplete="off" placeholder="请输入初始金额"></el-input>
-            </el-form-item>
-            <el-form-item label="性别" style="width:600px" :label-width="formLabelWidth">
-              <el-select style="width:600px" v-model="form.sex" placeholder="请选择性别">
-                <el-option label="男" value="男"></el-option>
-                <el-option label="女" value="女"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="角色" style="width:600px" :label-width="formLabelWidth">
-              <el-select style="width:600px" v-model="form.roleId" placeholder="请选择角色">
-                <el-option label="校区管理员" value="1"></el-option>
-                <el-option label="教师" value="2"></el-option>
-                <el-option label="学生家长" value="3"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item v-if="form.roleId == '3' " label="年级" style="width:600px" :label-width="formLabelWidth">
-              <el-select style="width:600px" v-model="form.grade" placeholder="请选择年级">
-                <el-option label="1年级" value="1"></el-option>
-                <el-option label="2年级" value="2"></el-option>
-                <el-option label="3年级" value="3"></el-option>
-                <el-option label="4年级" value="4"></el-option>
-                <el-option label="5年级" value="5"></el-option>
-                <el-option label="6年级" value="6"></el-option>
-              </el-select>
-            </el-form-item>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="exit">取 消</el-button>
-            <el-button type="primary" @click="btn">确 定</el-button>
-          </div>
-        </el-dialog>
-        <el-dialog title="修改用户" :visible.sync="dialogFormVisibletwo" :before-close="closeDialog">
-          <el-form :model="form" ref="form">
-            <el-form-item label="用户名" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.username" autocomplete="off" placeholder="请输入用户名"></el-input>
-            </el-form-item>
-            <el-form-item label="密码" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.password" autocomplete="off" show-password
-                        placeholder="请输入密码"></el-input>
-            </el-form-item>
-            <el-form-item label="真实姓名" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.realName" autocomplete="off" placeholder="请输入真实姓名"></el-input>
-            </el-form-item>
-            <el-form-item label="电话" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.telephone" autocomplete="off" placeholder="请输入电话"></el-input>
-            </el-form-item>
-            <el-form-item label="邮箱" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.email" autocomplete="off" placeholder="输入邮箱"></el-input>
-            </el-form-item>
-            <el-form-item label="初始金额" style="width:600px" :label-width="formLabelWidth">
-              <el-input style="width:600px" v-model="form.money" autocomplete="off" placeholder="请输入初始金额"></el-input>
-            </el-form-item>
-            <el-form-item label="性别" style="width:600px" :label-width="formLabelWidth">
-              <el-select style="width:600px" v-model="form.sex" placeholder="请选择性别">
-                <el-option label="男" value="男"></el-option>
-                <el-option label="女" value="女"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="角色" style="width:600px" :label-width="formLabelWidth">
-              <el-select style="width:600px" v-model="form.roleId" placeholder="请选择角色">
-                <el-option label="校区管理员" value="1"></el-option>
-                <el-option label="教师" value="2"></el-option>
-                <el-option label="学生家长" value="3"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item v-if="form.roleId == '学生家长' " label="年级" style="width:600px" :label-width="formLabelWidth">
-              <el-select style="width:600px" v-model="form.grade" placeholder="请选择年级">
-                <el-option label="1年级" value="1"></el-option>
-                <el-option label="2年级" value="2"></el-option>
-                <el-option label="3年级" value="3"></el-option>
-                <el-option label="4年级" value="4"></el-option>
-                <el-option label="5年级" value="5"></el-option>
-                <el-option label="6年级" value="6"></el-option>
-              </el-select>
-            </el-form-item>
-          </el-form>
-          <div slot="footer" class="dialog-footer">
-            <el-button @click="exittwo">取 消</el-button>
-            <el-button type="primary" @click="btntwo">确 定</el-button>
-          </div>
-        </el-dialog>
-      </el-col>
-      <el-col :span="6">
-        <el-input style="width: 300px;margin-right: 0px" placeholder="输入用户名查询(不输入内容默认搜索全部)"
-                  v-model="goodsName"></el-input>
-        <el-button @click="findListClick">搜索</el-button>
+     <span style="color:#606266;padding-left:10px">选择课程：</span><el-select @change="optinClick" v-model="value" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
       </el-col>
     </el-row>
     <el-table
@@ -118,16 +20,16 @@
         type="index">
       </el-table-column>
       <el-table-column
-        label="用户名"
-        prop="username">
+        label="课程编号"
+        prop="lessonId">
       </el-table-column>
       <el-table-column
-        label="密码"
-        prop="password">
+        label="课程名称"
+        prop="className">
       </el-table-column>
       <el-table-column
-        label="真实姓名"
-        prop="realName">
+        label="季度"
+        prop="quarter">
       </el-table-column>
       <el-table-column
         label="年级"
@@ -138,37 +40,54 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="电话"
-        prop="telephone">
+        label="上课方式"
+        prop="classMethod">
       </el-table-column>
       <el-table-column
-        label="邮箱"
-        prop="email">
+        label="科目"
+        prop="subject">
       </el-table-column>
       <el-table-column
-        label="性别"
-        prop="sex">
+        label="教师名称"
+        prop="teacherName">
       </el-table-column>
       <el-table-column
-        label="银行卡号"
-        prop="bankId">
+        label="班级类型"
+        prop="classType">
       </el-table-column>
       <el-table-column
-        label="剩余金额"
-        prop="money">
+        label="教室号"
+        prop="classroomId">
+      </el-table-column>
+      <el-table-column
+        label="开课时间"
+        prop="startTime">
+      </el-table-column>
+      <el-table-column
+        label="课程数"
+        prop="total">
+        <template slot-scope="scope">
+          <span>{{scope.row.total}}节</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="价格/节"
+        prop="price">
+        <template slot-scope="scope">
+          <span>{{scope.row.price}}元</span>
+        </template>
       </el-table-column>
       <el-table-column
         label="状态"
-        prop="status">
+        prop="isStart">
       </el-table-column>
       <el-table-column
-        label="角色"
-        prop="roleId">
-        <template slot-scope="scope">
-          <span v-if="scope.row.roleId == 1">校区管理员</span>
-          <span v-else-if="scope.row.roleId == 2">教师</span>
-          <span v-else>学生家长</span>
-        </template>
+        label="当前人数"
+        prop="joinNum">
+      </el-table-column>
+      <el-table-column
+        label="上课时间"
+          prop="classTime">
       </el-table-column>
       <el-table-column
         align="center"
@@ -206,18 +125,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog
-      title="充值"
-      :visible.sync="dialogVisibleCz"
-      width="30%"
-      :before-close="handleClose">
-      充值金额：
-      <el-input style="width:80%" type="number" v-model="moneyCz"></el-input>
-      <span slot="footer" class="dialog-footer">
-          <el-button @click="quitCz">取 消</el-button>
-          <el-button type="primary" @click="btnCz">确 定</el-button>
-        </span>
-    </el-dialog>
     <div style="height: 30px;text-align: center">
       <pagination :currentPage="pageNum" :total=total :limit="pageSize" :small="false"
                   @handleCurrentChange="handleCurrentChange" @handleSizeChange="handleSizeChange"
@@ -230,13 +137,14 @@
 <script>
   import Pagination from './pagination.vue'
   import {
-    listAlldo,
+    lessonselectLessonByTeacher,
     findUserList,
     userupdateStatusdo,
     usermakeMoneydo,
     deletedo,
     savedo,
-    updatedo
+    updatedo,
+    schoolgetSchoolListdo
   } from '@/api/user.js'
 
   export default {
@@ -246,6 +154,7 @@
     },
     data () {
       return {
+        options:[],
         value1: '',
         tableData: [],
         flagJY: '禁用',
@@ -285,12 +194,40 @@
       }
     },
     mounted () {
-      this.listAlldo()
+      this.schoolgetSchoolListdo()
+      // this.lessonselectLessonByTeacher()
     },
     methods: {
       quitCz () {
         this.moneyCz = ''
         this.dialogVisibleCz = false
+      },
+      optinClick(val){
+        lessonselectLessonByTeacher(this.parms.pageNum,this.parms.pageSize,usr,val).then((response) => {
+          this.tableData = response.data.data.records
+          console.log(this.tableData)
+          this.total = response.data.data.total
+        })
+      },
+   // select
+      schoolgetSchoolListdo(){
+        schoolgetSchoolListdo(sessionStorage.getItem('userName')).then((response) => {
+          for(var i=0;i<response.data.data.length;i++){
+            let obj={}
+            obj['value']=response.data.data[i].schoolId
+            obj['label']=response.data.data[i].schoolName
+            this.options.push(obj)
+          }
+          this.value = this.options[0].label
+          console.log(this.options[0].value)
+          let usr = sessionStorage.getItem('userName')
+          lessonselectLessonByTeacher(this.parms.pageNum,this.parms.pageSize,usr,this.options[0].value).then((response) => {
+          this.tableData = response.data.data.records
+          console.log(this.tableData)
+          this.total = response.data.data.total
+        })
+        })
+        
       },
       btnCz () {
         usermakeMoneydo(this.moneyChongzhiusername, this.moneyCz).then((response) => {
@@ -366,7 +303,7 @@
         this.form.password = row.password
         this.form.id = row.id
         this.dialogFormVisibletwo = true
-        this.listAlldo()
+        this.lessonselectLessonByTeacher()
       },
       handlechange (index, row) {
         console.log(index, row)
@@ -379,7 +316,7 @@
           userupdateStatusdo(row.username, '启用').then((response) => {
             if (response.data.code == 200) {
               this.$message.success(response.data.msg)
-              this.listAlldo()
+              this.lessonselectLessonByTeacher()
             }
 
           })
@@ -387,7 +324,7 @@
           userupdateStatusdo(row.username, '禁用').then((response) => {
             if (response.data.code == 200) {
               this.$message.success(response.data.msg)
-              this.listAlldo()
+              this.lessonselectLessonByTeacher()
             }
           })
         }
@@ -400,7 +337,7 @@
           deletedo(row.id).then((response) => {
             if (response.data.code == 200) {
               this.$message.success(response.data.msg)
-              this.listAlldo()
+              this.lessonselectLessonByTeacher()
             }
           })
 
@@ -411,17 +348,18 @@
       handleCurrentChange (val) {
         console.log(val)//页码
         this.parms.pageNum = val
-        this.listAlldo()
+        this.lessonselectLessonByTeacher()
       },
       handleSizeChange (val) {
         console.log(val)
         this.parms.pageSize = val//页数
-        this.listAlldo()
+        this.lessonselectLessonByTeacher()
       },
 
       //查询所有任务;
-      listAlldo () {
-        listAlldo(this.parms.pageNum, this.parms.pageSize).then((response) => {
+      lessonselectLessonByTeacher () {
+        let usr = sessionStorage.getItem('userName')
+        lessonselectLessonByTeacher(this.parms.pageNum, this.parms.pageSize,usr,this.value).then((response) => {
           this.tableData = response.data.data.records
           console.log(this.tableData)
           this.total = response.data.data.total
@@ -439,7 +377,7 @@
             this.dialogFormVisible = false
             this.$message.success(response.data.msg)
             this.resetFormData()
-            this.listAlldo()
+            this.lessonselectLessonByTeacher()
           } else {
             this.$message.error(response.data.msg)
           }
@@ -451,7 +389,7 @@
           if (response.data.code == 200) {
             this.dialogFormVisibletwo = false
             this.$message.success(response.data.msg)
-            this.listAlldo()
+            this.lessonselectLessonByTeacher()
             this.resetFormData()
           }
         })

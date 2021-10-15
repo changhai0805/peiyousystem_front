@@ -31,13 +31,13 @@
           <i class="el-icon-s-custom"></i>
           <span slot="title">客服中心</span>
         </el-menu-item>
+        <el-menu-item index="/Opinion">
+          <i class="el-icon-s-custom"></i>
+          <span slot="title">留言列表</span>
+        </el-menu-item>
         <el-menu-item index="/exitMoney">
           <i class="el-icon-position"></i>
           <span slot="title">审核退费</span>
-        </el-menu-item>
-        <el-menu-item index="/changePass">
-          <i class="el-icon-baseball"></i>
-          <span slot="title">密码修改</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
@@ -72,8 +72,11 @@
       exitlogin(){
         var r=confirm("是否退出登录？");
         if (r===true){
-          this.$router.push('/login')
+          this.$router.push('/admin/login')
           sessionStorage.removeItem('userName')
+          sessionStorage.removeItem('money')
+          sessionStorage.removeItem('realName')
+
         }
 
       }

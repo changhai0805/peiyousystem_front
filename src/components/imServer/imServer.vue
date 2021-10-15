@@ -40,7 +40,7 @@ export default {
         this.$store.imServerStore.dispatch('SERVER_ON');
     },
   beforeRouteLeave(to,from,next){
-    this.$confirm("是否离开当前页面，您将不会接收新的消息","离开此页面?",{
+    this.$confirm("是否离开客服页面，您将不会接收新的消息","离开此页面?",{
       confirmButtonText:"离开",
       cancelButtonText:"取消",
       type:"warning"

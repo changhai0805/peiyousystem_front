@@ -22,8 +22,11 @@ import PersonCore from '@/view/personCore'
 import NewsCore from '@/view/newsCore'
 import ClassManagment from '@/view/classManagment'
 import SchoolByAdmin from '@/view/schoolByAdmin'
+import Opinion from '@/view/Opinion'
+import Tabs from '@/view/Tabs'
 import imServer from '@/components/imServer/imServer'
 import imClient from '@/components/imClient/imClient'
+import Login1 from '@/view/login1'
 Vue.use(Router)
 
 const router = new Router({
@@ -34,6 +37,11 @@ const router = new Router({
     },
     {
       path: '/login',
+      name:'login1',
+      component: Login1,
+    },
+    {
+      path: '/admin/login',
       name:'login',
       component: Login,
     },
@@ -102,6 +110,11 @@ const router = new Router({
           component: SalesPersonal
         },
         {
+          path: '/Opinion',
+          name: 'Opinion',
+          component: Opinion
+        },
+        {
           path: '/customerServe',
           name: 'customerServe',
           component: CustomerServe
@@ -158,7 +171,12 @@ const router = new Router({
           path: '/imClient',
           name: 'imClient',
           component: imClient
-        }
+        },
+        {
+          path: '/Tabsthree',
+          name: 'Tabs',
+          component: Tabs
+        },
       ]
     },
   ]

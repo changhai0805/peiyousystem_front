@@ -236,8 +236,19 @@ export function teachergetTeacherLessonListdo(username) {
 //班级管理下拉列表
 export function schoolgetSchoolListdo() {
   return request({
-    url: baseURL + '/school/getSchoolList.do  ',
+    url: baseURL + '/school/getSchoolList.do',
     method: 'get',
+  })
+}
+//班级管理下拉列表
+export function insertAdminSchool(username,schoolId) {
+  return request({
+    url: baseURL + '/school/insertAdminSchool.do',
+    method: 'post',
+    params:{
+      username:username,
+      schoolId:schoolId
+    }
   })
 }
 //班级管理列表
@@ -253,22 +264,195 @@ export function teachegetClassInfoByTeacherdo(current,size,username,schoolId) {
     }
   })
 }
+export function selectLessonList(current,size) {
+  return request({
+    url: baseURL + '/lesson/list.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size
+    }
+  })
+}
 
+export function selectLessonListByName(current,size,lessonName) {
+  return request({
+    url: baseURL + '/lesson/listByName.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      lessonName:lessonName
+    }
+  })
+}
 
+export function getTeacherList() {
+  return request({
+    url: baseURL + '/teacher/getTeacherList.do',
+    method: 'get',
+  })
+}
 
+export function updateLessonTeacher(lessonId,teacherId) {
+  return request({
+    url: baseURL + '/teacher/updateTeacher.do',
+    method: 'post',
+    params:{
+      lessonId:lessonId,
+      teacherId:teacherId,
+    }
+  })
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+export function selectAllMessageByUserId(userId) {
+  return request({
+    url: baseURL + '/message/selectMessageByUserId.do',
+    method: 'post',
+    params: {
+      userId:userId
+    }
+  })
+}
+export function updateMessageStatus(item) {
+  return request({
+    url: baseURL + '/message/updateOneById.do',
+    method: 'post',
+    params: {
+      id:item
+    }
+  })
+}
+export function deleteAllMessageByUserId(item) {
+  return request({
+    url: baseURL + '/message/deleteAllMessageByUserId.do',
+    method: 'post',
+    params: {
+      userId:item
+    }
+  })
+}
+export function deleteMessage(item) {
+  return request({
+    url: baseURL + '/message/deleteMessage.do',
+    method: 'post',
+    params: {
+      id:item
+    }
+  })
+}
+export function updateAllMessageByUserId(item) {
+  return request({
+    url: baseURL + '/message/updateAllMessageByUserId.do',
+    method: 'post',
+    params: {
+      userId:item
+    }
+  })
+}
+export function selectAllOpinionByUserId(userId) {
+  return request({
+    url: baseURL + '/opinion/selectMessageByUserId.do',
+    method: 'post',
+    params: {
+      userId:userId
+    }
+  })
+}
+export function replyOpinion(data) {
+  return request({
+    url: baseURL + '/opinion/replyOpinion.do',
+    method: 'post',
+    params: data
+  })
+}
+export function deleteAllOpinionByUserId(item) {
+  return request({
+    url: baseURL + '/opinion/deleteAllMessageByUserId.do',
+    method: 'post',
+    params: {
+      userId:item
+    }
+  })
+}
+export function deleteOpinion(item) {
+  return request({
+    url: baseURL + '/opinion/deleteMessage.do',
+    method: 'post',
+    params: {
+      id:item
+    }
+  })
+}
+export function updateAllOpinionByUserId(item) {
+  return request({
+    url: baseURL + '/opinion/updateAllMessageByUserId.do',
+    method: 'post',
+    params: {
+      userId:item
+    }
+  })
+}
+export function addToCar(username,lessonId,lessonName,price,total,classSize) {
+  return request({
+    url: baseURL + '/order/addToCar.do',
+    method: 'post',
+    params: {
+      username:username,
+      lessonId:lessonId,
+      lessonName:lessonName,
+      price:price,
+      total:total,
+      classSize:classSize
+    }
+  })
+}
+export function joinAndPay(username, lessonId, totalPay, stuName, orderId) {
+  return request({
+    url: baseURL + '/order/joinAndPay.do',
+    method: 'post',
+    params: {
+      username:username,
+      lessonId:lessonId,
+      totalPay:totalPay,
+      stuName:stuName,
+      orderId:orderId
+    }
+  })
+}
+//注册学生家长
+export function savedo1(data) {
+  return request({
+    url: baseURL + '/user/save.do',
+    method: 'post',
+    data:data
+  })
+}
+//
+// 修改密码
+export function userupdatePassword(username,password) {
+  return request({
+    url: baseURL + '/user/updatePassword.do',
+    method: 'post',
+    params:{
+      username:username,
+      password:password
+    }
+  })
+}
+//teacher课程管理
+export function lessonselectLessonByTeacher(current,size,username,schoolId) {
+  return request({
+    url: baseURL + '/lesson/selectLessonByTeacher.do',
+    method: 'get',
+    params:{
+      current:current,
+      size:size,
+      username:username,
+      schoolId:schoolId
+    }
+  })
+}
 
 
 
@@ -589,11 +773,14 @@ export function salereturnupdateStatus(userId,status) {
   })
 }
 //查询所有采购记录
-export function commoditypurchaseList(data) {
+export function commoditypurchaseList(current,size) {
   return request({
-    url: baseURL + '/commoditypurchase/list',
-    method: 'post',
-    params: data
+    url: baseURL + '/lesson/listNoStart.do',
+    method: 'get',
+    params: {
+      current:current,
+      size:size
+    }
   })
 }
 //添加采购商品
@@ -694,3 +881,5 @@ export function purchasereturnfind(userName,pageNum,pageSize) {
     }
   })
 }
+//搜索采购退货记录
+

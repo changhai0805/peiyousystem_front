@@ -1,123 +1,199 @@
 <template>
-<div>
-  <el-card class="box-card">
-    <div slot="header" class="clearfix">
-      <span style="color: #444;font-weight: bold;display: inline-block;padding-left: 150px">修改个人信息</span>
-    </div>
-    <div style="width: 100%">
-      <label style="width: 15%;text-align: right;display: inline-block">用户名：</label><el-input  v-model="form.realName" style="width: 30%;text-align: left"></el-input><br>
-      <label style="width: 15%;text-align: right;display: inline-block">身份证号：</label><el-input  placeholder="请输入要修改的身份证号" v-model="form.idNumber" style="width: 30%;text-align: left;padding-top: 20px"></el-input><br>
-      <label style="width: 15%;text-align: right;display: inline-block">密码：</label><el-input placeholder="password" v-model="form.password" style="width: 30%;text-align: left;padding-top: 20px"></el-input><br>
-      <label style="width: 15%;text-align: right;display: inline-block">角色：</label><el-input placeholder="请输入要修改的角色" v-model="form.role" style="width: 30%;text-align: left;padding-top: 20px"></el-input><br>
-      <label style="width: 15%;text-align: right;display: inline-block">性别：</label><el-input placeholder="请输入要修改的性别" v-model="form.sex" style="width: 30%;text-align: left;padding-top: 20px"></el-input><br>
-      <label style="width: 15%;text-align: right;display: inline-block">电话：</label><el-input placeholder="请输入要修改的电话" v-model="form.telephone" style="width: 30%;text-align: left;padding-top: 20px"></el-input><br>
-      <br><el-button style="margin-top: 20px;margin-left: 40%"  @click="changeName">修改</el-button>
-      <el-dialog title="添加采购信息" :visible.sync="dialogFormVisible" :before-close="closeDialog" >
-        <el-form :model="form" ref="form">
-          <el-form-item  label="用户名" style="width:600px" :label-width="formLabelWidth">
-            <el-input v-model="form.realName" autocomplete="off" placeholder="请输入用户名"></el-input>
-          </el-form-item>
-          <el-form-item  label="身份证号" style="width:600px" :label-width="formLabelWidth">
-            <el-input v-model="form.idNumber" autocomplete="off" placeholder="请输入身份证号"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" style="width:600px" :label-width="formLabelWidth">
-            <el-input v-model="form.password" autocomplete="off" placeholder="请输入密码"></el-input>
-          </el-form-item>
-          <el-form-item label="角色" style="width:600px" :label-width="formLabelWidth">
-            <el-input v-model="form.role" autocomplete="off" placeholder="请输入角色"></el-input>
-          </el-form-item>
-          <el-form-item label="性别" style="width:300px" :label-width="formLabelWidth">
-            <el-select v-model="form.sex" placeholder="请选择性别">
-              <el-option label="男" value="男"></el-option>
-              <el-option label="女" value="女"></el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="电话" style="width:600px" :label-width="formLabelWidth">
-            <el-input v-model="form.telephone" autocomplete="off" placeholder="请输入电话"></el-input>
-          </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-          <el-button @click="exit">取 消</el-button>
-          <el-button type="primary" @click="btn">确 定</el-button>
-        </div>
-      </el-dialog>
-    </div>
-  </el-card>
-</div>
+  <div style="position:relative;height: 100%">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-tab-pane label="基本信息" name="second">
+            <el-card style="text-align:left" class="box-card">
+                <div slot="header" class="clearfix">
+                    <span>基本信息</span>
+                </div>
+                <el-row style="margin-bottom:10px">用户名：{{customerDetails.username}}</el-row>
+                <el-row style="margin-bottom:10px">姓名：<el-input v-model="customerDetails.realName" style="width:20%"></el-input> </el-row>
+                <el-row style="margin-bottom:10px">性别：
+                <el-select style="width:20%" v-model="customerDetails.sex" placeholder="请选择性别">
+                    <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                    </el-option>
+      </el-select>
+                </el-row>
+                <el-row style="margin-bottom:10px">电话：<el-input v-model="customerDetails.telephone" style="width:20%"></el-input></el-row>
+                <el-row style="margin-bottom:10px">邮箱：<el-input v-model="customerDetails.email" style="width:20%"></el-input></el-row>
+                <el-row style="margin-bottom:10px">银行卡号：{{customerDetails.bankId}}</el-row>
+                <el-row style="margin-bottom:10px">余额：{{customerDetails.money}}</el-row>
+                <el-row style="margin-bottom:10px">
+                    <el-button @click="editInfo">修改</el-button>
+                </el-row>
+            </el-card>
+        </el-tab-pane>
+        <el-tab-pane label="修改密码" name="third">
+            <el-card class="box-card" style="margin-top:50px">
+            <div slot="header" class="clearfix">
+                <span style="color: #444;font-weight: bold">修改密码</span>
+            </div>
+            <div style="width: 100%">
+                <!-- <label style="width: 15%;text-align: right;display: inline-block">用户名：</label><el-input disabled v-model="userName" style="width: 30%;text-align: left"></el-input><br> -->
+                <label style="text-align: right;display: inline-block">密码：</label><el-input type="password" placeholder="请输入要修改的密码" v-model="pwd" style="width: 25%;text-align: left;padding-top: 20px"></el-input>
+                <br><el-button style="margin-top: 20px;margin-left: 25%" @click="changeName">确认</el-button>
+            </div>
+            </el-card>
+        </el-tab-pane>
+    </el-tabs>
+  </div>
 </template>
-
 <script>
-  import {updatePasswordByName,ctygfindUserInfo} from '@/api/user.js';
-    export default {
-        name: "test",
-        data(){
-          return{
-            // realName:'',
-            // telephone:'',
-            // idNumber:'',
-            // password:'',
-            // role:'',
-            // sex:'',
-            dialogFormVisible:false,
-            form: {
-              id:'',
-              userId:'',
-              password:'',
-              realName:'',
-              sex:'',
-              telephone:'',
-              idNumber:'',
-              role:'',
-            },
-            formLabelWidth: '120px',
-          }
-        },
-        methods:{
-          ctygfindUserInfo(){
-            var id = sessionStorage.getItem('id')
-            ctygfindUserInfo(id).then((response)=>{
-              this.form.id = response.data.obj.id;
-              this.form.userId = response.data.obj.userId;
-              this.form.realName = response.data.obj.realName;
-              this.form.telephone = response.data.obj.telephone;
-              this.form.idNumber = response.data.obj.idNumber;
-              this.form.password = response.data.obj.password;
-              this.form.role = response.data.obj.role;
-              this.form.sex = response.data.obj.sex;
-            })
-          },
-          changeName(){
-            this.dialogFormVisible = true
-          },
-          exit(form){
-            this.dialogFormVisible = false
-            location.reload();
-          },
-          btn(){
-            this.dialogFormVisible = false
-            updatePasswordByName(this.form).then((response)=>{
-              if (response.data.code === 200){
-                this.$message.success('修改成功')
-                this.ctygfindUserInfo();
-              }
-            })
+  import {userlistUserInfodo,updatedo,userupdatePassword} from '@/api/user.js';
+  export default {
+    name: "result",
+    components: {
 
-          },
-          closeDialog(done){
-            this.$confirm('确认关闭？')
-              .then(_ => {
-                done();
-                location.reload();
-              })
-              .catch(_ => { });
+    },
+    data() {
+      return {
+        options: [{
+          value: '男',
+          label: '男'
+        }, {
+          value: '女',
+          label: '女'
+        }],
+        value:'',
+        checkTime:this.dayFormat(),
+          pwd:'',
+        customerDetails:{},
+        activeName: 'second',
+        dialogVisible:false,
+        courseName:'',
+
+        };
+    },
+    mounted() {
+     this.getCusInfo()
+    },
+    methods: {
+      //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+      dateFormat:function() {
+        var date=new Date();
+        var year=date.getFullYear();
+        /* 在日期格式中，月份是从0开始的，因此要加0
+         * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+         * */
+        var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+        var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+        var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+        var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+        var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+        // 拼接
+        return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+      },
+      //时间格式化函数，此处仅针对yyyy-MM-dd hh:mm:ss 的格式进行格式化
+      dayFormat:function() {
+        var date=new Date();
+        var year=date.getFullYear();
+        /* 在日期格式中，月份是从0开始的，因此要加0
+         * 使用三元表达式在小于10的前面加0，以达到格式统一  如 09:11:05
+         * */
+        var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+        var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+        // 拼接
+        return year+"-"+month+"-"+day;
+      },
+        courseClickDetils(val,index,lessonIndex){
+          if(val!=''&&val!='-'){
+            alert("本节有课")
+          }else {
+            alert("本节没课")
           }
+            for(let i=0;i<=6;i++){
+                if(index == i){
+                    //确定列
+                    console.log(this.classTableData.courses[i])
+                    //确定行 锁定单元格
+                    for(var j=0;j<this.classTableData.courses[i].length;j++){
+                        if(lessonIndex == j){
+                            console.log(this.classTableData.courses[i][j])
+                            this.courseName = this.classTableData.courses[i][j]
+                            //弹框显示课程基本信息以及考勤，通过课程名区分
+                            this.dialogVisible = true
+                        }
+                    }
+                }
+            }
         },
-      mounted() {
-          this.ctygfindUserInfo()
-      }
-    }
+        changeName(){
+            let usr = sessionStorage.getItem('userName')
+                userupdatePassword(usr,this.pwd).then((response)=>{
+                // this.customerDetails = response.data.data
+                if(response.data.code == 200){
+                    this.$message.success(response.data.msg)
+                }else{
+                    this.$message.console.error(response.data.msg)
+                }
+            })
+        },
+        editInfo(){
+                updatedo(this.customerDetails).then((response)=>{
+                // this.customerDetails = response.data.data
+                if(response.data.code == 200){
+                    this.$message.success(response.data.msg)
+                }else{
+                    this.$message.console.error(response.data.msg)
+                }
+            })
+        },
+        getCusInfo(){
+            let usr = sessionStorage.getItem('userName')
+             userlistUserInfodo(usr).then((response)=>{
+                this.customerDetails = response.data.data
+            })
+           },
+                   digital2Chinese(num, identifier) {
+                    const character = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
+                    return identifier === 'week' && (num === 0 || num === 7) ? '日' : character[num];
+        }
+    },
+  }
 </script>
 
 <style scoped>
+.class-table>.table-wrapper{
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+}
+.class-table>.tabel-container{
+     margin: 7px;
+}
+.tabel-container>table {
 
+}
+ table {
+    table-layout: fixed;
+    width: 100%;
+}
+thead {
+    background-color: #67a1ff;
+}
+th {
+                    color: #fff;
+                    line-height: 17px;
+                    font-weight: normal;
+                }
+tbody{
+    background-color: #eaf2ff;
+}
+td {
+    width: 30px;
+    /*padding: 12px 2px;*/
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+}
+td:hover{
+     background: rgb(103, 161, 255);
+     /*border:medium double #fff*/
+}
 </style>

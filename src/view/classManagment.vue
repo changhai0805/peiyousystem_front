@@ -67,9 +67,8 @@
   import Pagination from './pagination.vue'
   import {
     findUserList,
-    listByTeacherInPage,
-    schoolgetSchoolListdo,
-    teachegetClassInfoByTeacherdo
+    teachegetClassInfoByTeacherdo,
+    teachergetTeacherLessonListdo
   } from '@/api/user.js'
 
   export default {
@@ -121,7 +120,7 @@
     },
     mounted () {
       // this.teachegetClassInfoByTeacherdo()
-      this.schoolgetSchoolListdo()
+      this.teachergetTeacherLessonListdo()
     },
     methods: {
       handleCurrentChange (val) {
@@ -144,12 +143,12 @@
         })
       },
       // select
-      schoolgetSchoolListdo(){
-        schoolgetSchoolListdo(sessionStorage.getItem('userName')).then((response) => {
+      teachergetTeacherLessonListdo(){
+        teachergetTeacherLessonListdo(sessionStorage.getItem('userName')).then((response) => {
           for(var i=0;i<response.data.data.length;i++){
             let obj={}
-            obj['value']=response.data.data[i].schoolId
-            obj['label']=response.data.data[i].schoolName
+            obj['value']=response.data.data[i].lessonId
+            obj['label']=response.data.data[i].lessonName
             this.options.push(obj)
           }
         })
