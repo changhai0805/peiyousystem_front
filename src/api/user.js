@@ -393,8 +393,41 @@ export function updateAllOpinionByUserId(item) {
     }
   })
 }
-
-
+export function addToCar(username,lessonId,lessonName,price,total,classSize) {
+  return request({
+    url: baseURL + '/order/addToCar.do',
+    method: 'post',
+    params: {
+      username:username,
+      lessonId:lessonId,
+      lessonName:lessonName,
+      price:price,
+      total:total,
+      classSize:classSize
+    }
+  })
+}
+export function joinAndPay(username, lessonId, totalPay, stuName, orderId) {
+  return request({
+    url: baseURL + '/order/joinAndPay.do',
+    method: 'post',
+    params: {
+      username:username,
+      lessonId:lessonId,
+      totalPay:totalPay,
+      stuName:stuName,
+      orderId:orderId
+    }
+  })
+}
+//注册学生家长
+export function savedo1(data) {
+  return request({
+    url: baseURL + '/user/save.do',
+    method: 'post',
+    data:data
+  })
+}
 
 
 
@@ -719,11 +752,14 @@ export function salereturnupdateStatus(userId,status) {
   })
 }
 //查询所有采购记录
-export function commoditypurchaseList(data) {
+export function commoditypurchaseList(current,size) {
   return request({
-    url: baseURL + '/commoditypurchase/list',
-    method: 'post',
-    params: data
+    url: baseURL + '/lesson/listNoStart.do',
+    method: 'get',
+    params: {
+      current:current,
+      size:size
+    }
   })
 }
 //添加采购商品
@@ -824,3 +860,5 @@ export function purchasereturnfind(userName,pageNum,pageSize) {
     }
   })
 }
+//搜索采购退货记录
+

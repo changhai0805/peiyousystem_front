@@ -72,8 +72,11 @@
       exitlogin(){
         var r=confirm("是否退出登录？");
         if (r===true){
-          this.$router.push('/login')
+          this.$router.push('/admin/login')
           sessionStorage.removeItem('userName')
+          sessionStorage.removeItem('money')
+          sessionStorage.removeItem('realName')
+
         }
 
       }
